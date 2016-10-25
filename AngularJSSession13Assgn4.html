@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="SampleApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="../../scripts/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+</head>
+<body>
+
+    <script>
+        var sampleApp = angular.module('SampleApp', ['ngRoute']);
+        sampleApp.config(['$routeProvider',
+            function ($routeProvider) {
+                $routeProvider.
+                when('/Angular01/:topicId', {
+                    myText:"This is Angular Js $Route Service",
+                    templateUrl: 'Angular01.html',
+                    controller:'AngularController'
+                })
+            }]);
+        sampleApp.controller('AngularController', function ($scope, $routeParams,$route) {
+            $scope.tutorialId = $routeParams.topicId;
+            $scope.text = $route.current.myText;
+            $scope.tutorial = [
+            { Name: "Controllers", Description: "Controllers in action" },
+            { Name: "Models", Description: "Models and binding data" },
+            { Name: "Directives", Description: "Flexibility of Directives" }]
+        });
+    </script>
+
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>Sl No.</th>
+                <th>Angular Js Topics</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>Controllers</td>
+            <td><a href="#Angular01/1">Topic Details</a></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Models</td>
+            <td><a href="#Angular01/2">Topic Details</a></td>
+         </tr>
+        <tr>
+            <td>3</td>
+            <td>Directives</td>
+            <td><a href="#Angular01/3">Topic Details</a></td>
+        </tr>
+    </table>
+
+    <div ng-view></div>
+</body>
+</html>
